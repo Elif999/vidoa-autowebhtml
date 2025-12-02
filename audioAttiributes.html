@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- konu:
+Harika bir konu! HTML <audio> etiketi 🎧, web sayfasına ses dosyaları eklemek için kullanılır
+ve daha önce tartıştığımız <video> etiketine çok benzer bir mantıkla çalışır. 
+Temel fark, doğal olarak, görsel bir bileşeni olmamasıdır.
+Tıpkı videoda olduğu gibi, tarayıcı uyumluluğu için birden fazla <source> etiketi kullanmak
+iyi bir pratiktir (örneğin, .mp3 ve .ogg).
+🎵 <audio> Etiketi ve Temel Özellikler Örneği
+İşte kontrol düğmeleri olan basit bir ses oynatıcı örneği:
+    -->
+    <h3>Web Sayfasında Ses Dosyası Örneği</h3>
+<audio controls>
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/ogg">
+
+    Tarayıcınız ses etiketini desteklemiyor.
+</audio>
+
+
+<!--
+1.. autoplay Örneği (Otomatik Başlatma)
+Bu özellik, tarayıcıya sayfayı yükler yüklemez sesi otomatik olarak başlatmasını söyler.
+
+💡 Önemli Not: Daha önce de konuştuğumuz gibi, modern tarayıcıların otomatik başlatma kısıtlamaları nedeniyle, 
+bu özelliğin çalışması için genellikle muted (sessiz) özelliğini de eklememiz gerekir.
+Aksi takdirde, tarayıcı sesi başlatmayı reddedebilir.
+Örnek:
+-->
+<h3>1. 🚀 Autoplay Örneği (Sayfa Açılır Açılmaz Başlar)</h3>
+
+<audio controls autoplay muted>
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+
+
+
+<!--
+2.loop Örneği (Tekrar Etme / Döngü)
+Bu özellik, sesin ne zaman başlayacağı ile değil, ne zaman biteceği ile ilgilenir. 
+Ses dosyası sona erdiğinde, loop özelliği varsa, otomatik olarak başa döner ve tekrar çalmaya başlar.
+ÖRNEK:
+-->
+<h3>2. 🔄 Loop Örneği (Sürekli Tekrar Eder)</h3>
+
+<audio controls loop>
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+
+<!--
+3.muted Örneği (Varsayılan Ses Kapalı)
+muted özelliği, tarayıcıya ses dosyasını oynatıcıya yüklediğinde,
+ ses seviyesini varsayılan olarak kapalı (sıfır) ayarlamasını söyler. 
+Kullanıcı isterse kontrol düğmelerini kullanarak sesi açabilir.
+🔇 Kullanım Yeri: Kullanıcının tercihe bağlı olarak sesi açmasını istediğiniz durumlarda
+ veya web sayfasının açılışında aniden ses çıkmasını engellemek için kullanılır.
+ ÖRNEK:
+-->
+ <h3>3. 🔇 Muted Örneği (Varsayılan Ses Kapalı)</h3>
+
+<audio controls muted>
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+
+
+<!--
+4.Preload Değerleri ve Mantığı:
+*auto,💾,Tarayıcıya ses dosyasının tamamını veya büyük bir kısmını hemen indir talimatını verir.,
+"Sesin anında başlaması için iyidir, ancak sayfa yüklemesini yavaşlatabilir."
+
+*metadata,ℹ️,"Sadece dosyanın üst verilerini (süre, boyut vb.) indirir. Sesin kendisini indirmez.",
+İyi bir denge sağlar; kullanıcının ne kadar uzun bir ses olduğunu görmesini sağlar.
+
+*none,🚫,Kullanıcı oynat düğmesine basana kadar hiçbir ses verisi indirilmez.,
+En çok veri tasarrufu sağlar ve sayfanın en hızlı yüklenmesine yardımcı olur.
+
+Örnekler: preload=(auto/none/metadata) özellikleri;
+-->
+
+
+<!--
+1.preload="auto"'nun Mantığı
+preload="auto" özelliğini kullandığınızda, tarayıcıya şu talimatı verirsiniz: 
+"Bu sayfa yüklenirken, ses dosyasının tamamını (veya mümkün olan en büyük kısmını) hemen indirmeye başla."
+
+Amaç: Kullanıcının oynat düğmesine bastığı anda sesin hiçbir bekleme olmadan (buffer'sız) anında başlamasını sağlamaktır.
+
+Etki: Bu, kullanıcı deneyimi açısından dinleme başlatma hızını artırır, ancak sayfanın genel yüklenme süresini yavaşlatır.
+Özellikle mobil cihazlarda ve yavaş internet bağlantılarında, 
+Büyük bir ses dosyasının hemen indirilmesi veri tüketimini artırır 
+Ve kullanıcının sayfadaki diğer içeriği görmesini geciktirebilir.
+ÖRNEK:
+-->
+<h3>1. preload="auto" Örneği</h3>
+<audio controls preload="auto">
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+
+<!--
+2.preload="metadata"'nın Mantığı
+preload="metadata" özelliği, hız ve bilgi arasında en iyi dengeyi kuran seçenektir.
+
+Ne Yapar: Tarayıcıya, ses dosyasının sadece üst verilerini (metadata) indirmesini söyler. 
+Üst veri, dosyanın kendisi değil, videonun toplam süresi (örneğin 04:30), dosya boyutu gibi bilgilerdir.
+
+Faydası: Tarayıcı bu bilgileri indirdiğinde, ses oynatıcısının zaman çubuğunda toplam süre hemen görünür. 
+Bu sayede kullanıcı, sesi başlatmadan önce ne kadar süreceğini bilir.
+Ancak tüm ses dosyasını indirmediği için sayfa yükleme hızı yavaşlamaz.
+ÖRNEK:
+-->
+<h3>2. preload="metadata" Örneği</h3>
+<audio controls preload="metadata">
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+
+<!--
+3. preload="none"'un Mantığı
+preload="none" en veri dostu ve hız odaklı seçenektir.
+
+Ne Yapar: Tarayıcıya, ses dosyasıyla ilgili hiçbir veri indirmeye başlamamasını söyler.
+Oynatıcının görsel kontrol düğmeleri yüklenir, ancak sesin kendisi (uzun olan .mp3 dosyası) 
+kullanıcı 'Oynat' düğmesine basana kadar indirilmez.
+
+Faydası: Bu, sayfayı ziyaret eden ama sesi dinlemeyecek olan kullanıcılar için en büyük tasarrufu sağlar.
+ Uzun veya birden fazla medya dosyasının olduğu sitelerde, sayfanın açılış hızını maksimum düzeyde korur. 
+ Bu yüzden kodun yanındaki sembol 🚫 'dur.
+ ÖRNEK:
+-->
+ <h3>3.  preload="none" Örneği</h3>
+<audio controls preload="none">
+    <source src="The Moth (Bobby Woods & Les Deux Love Orchestra Cover) -  Aimee Mann [Mr. Robot S02E12].mp3" type="audio/mp3">
+    Tarayıcınız desteklemiyor.
+</audio>
+
+</body>
+</html>
