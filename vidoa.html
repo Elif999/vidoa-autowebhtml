@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <!--
+     poster Örneği
+Bu özelliği zaten senin kodunda kullanmıştın! poster,
+video yüklenirken veya kullanıcı "oynat" düğmesine basmadan önce 
+video oynatıcının yerinde gösterilecek kapak fotoğrafını belirler.
+Kullanım Yeri: Videonun ilk karesi ilgi çekici değilse veya video yüklenene kadar boş bir siyah ekran 
+görünmesini engellemek için kullanılır. 
+    
+    
+    -->
+    <h1>Web Sayfasında Video ve Kapak Örneği</h1>
+
+    <video 
+        width="640" 
+        height="360" 
+        controls 
+        poster="cyborg-hand-on-dark-background-touching-screen-with-finger-photo.jpg"
+    >
+        <source src="videoplayback (1).mp4" type="video/mp4">
+        <source src="videoplayback (1).mp4" type="video/ogg">
+
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+Ben:
+vidoa içinde  Neden iki tane soruce etiketi var birtane yetmiyormu:
+
+Gemini:
+Bunun tek bir ana nedeni var: **Tarayıcı Uyumluluğu** (Browser Compatibility).
+
+Basitçe söylemek gerekirse, **her web tarayıcısı (Chrome, Firefox, Safari, Edge vb.)
+ her video formatını (dosya türünü) desteklemez.**
+
+### 🖥️ "Plan B" Mantığı
+Videolar farklı formatlarda gelir; en yaygınları `.mp4` (H.264 codec'i ile), `.webm` (VP8/VP9 codec'i ile) 
+ve sizin örnekte kullandığınız `.ogg` (Theora codec'i ile) formatlarıdır.
+
+* **Geçmişte:** Tarayıcılar arasında büyük bir format savaşı vardı.
+ Bazı tarayıcılar (özellikle Firefox gibi açık kaynaklı olanlar) patentli olmayan 
+ `.ogg` veya `.webm` formatlarını tercih ederken, 
+ Safari ve Internet Explorer patentli olan `.mp4` (H.264) formatını destekliyordu.
+* **Çözüm:** Web geliştiricileri, herkesin videoyu izleyebildiğinden 
+emin olmak için aynı videonun birden fazla formatını sunmak zorundaydı.
+
+
+
+HTML `<video>` etiketi bu durumu çok akıllıca çözer:
+
+1.  **İlk Deneme:** Tarayıcı, kodda yazan ilk `<source>` etiketine bakar (`video_dosyasi.mp4`). Kendi kendine "Ben .mp4 formatını oynatabilir miyim?" diye sorar.
+2.  **Başarılıysa:** Eğer "Evet" cevabını alırsa (günümüzdeki çoğu tarayıcı gibi), bu videoyu yükler, oynatır ve **ikinci `<source>` etiketini (yani `.ogg` olanı) tamamen görmezden gelir.**
+3.  **Başarısızsa (Plan B):** Eğer tarayıcı (belki çok eski bir sürüm veya niş bir tarayıcı) `.mp4` formatını desteklemiyorsa, "Tamam, bunu geçiyorum" der ve listedeki bir sonraki `<source>` etiketine (`video_dosyasi.ogg`) bakar. "Peki, .ogg oynatabilir miyim?" diye sorar.
+4.  **Sonuç:** Eğer onu destekliyorsa, `.ogg` videosunu oynatır.
+
+---
+
+### Özet
+
+İki (veya daha fazla) kaynak eklemek, videonuzun mümkün olan en fazla tarayıcı ve cihazda sorunsuz çalışmasını 
+**garanti altına almak** için kullanılan bir **yedekleme (fallback)** yöntemidir.
+**Not:** Günümüzde `.mp4` (H.264 codec'i ile) formatı o kadar yaygınlaştı ki, 
+çoğu modern web sitesi artık sadece `.mp4` kaynağını eklemekle yetinebiliyor. 
+  Ancak en iyi uyumluluk için `.mp4` ve `.webm` formatlarını birlikte sunmak hala iyi bir pratiktir.
+
+Günümüzde en çok kullanılan video formatları (`.mp4` ve `.webm`) arasındaki farkları anlatmamı ister misiniz?
+
+
+
+
+
+
+
+
+Harika bir istek. Bu özelliklerin (attributes) her biri, video oynatıcının nasıl davranacağını belirlemek için kullanılır ve genellikle bir arada kullanılırlar.
+
+Senin kodunu temel alarak her biri için birer örnek yapalım.
+
+-----
+
+### 1\. `autoplay` ve `muted` Örneği
+
+`autoplay` videonun sayfa açılır açılmaz **otomatik başlamasını** sağlar.
+
+Ancak, modern tarayıcılar (Chrome, Safari vb.) kullanıcıyı rahatsız etmemek için **sesi olan** videoların otomatik başlamasını engeller. Bu yasağı aşmak ve `autoplay` özelliğinin çalıştığından emin olmak için, videoyu `muted` (sessiz) özelliği ile birlikte kullanmanız gerekir.
+
+> **Kullanım Yeri:** Genellikle web sitelerinin arka planında (hero banner) oynayan videolar için kullanılır.
+
+```html
+<h3>Örnek 1: Otomatik Başlayan ve Sessiz Video</h3>
+
+<video 
+    width="640" 
+    height="360"
+    autoplay
+    muted
+    loop 
+    >
+    <source src="video_dosyasi.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+```
+
+-----
+
+### 2\. `loop` Örneği
+
+`loop` özelliği, videonun sonuna gelindiğinde otomatik olarak **başa sarmasını** ve tekrar oynatılmasını sağlar. Video sonsuz bir döngüye girer.
+
+> **Kullanım Yeri:** GIF gibi davranmasını istediğiniz kısa animasyonlar veya yukarıdaki arka plan videoları için idealdir.
+
+```html
+<h3>Örnek 2: Sürekli Tekrar Eden Video</h3>
+
+<video 
+    width="640" 
+    height="360"
+    controls 
+    loop
+>
+    <source src="video_dosyasi.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+```
+
+-----
+
+### 3\. `poster` Örneği
+
+Bu özelliği zaten senin kodunda kullanmıştın\! `poster`, video yüklenirken veya kullanıcı
+ "oynat" düğmesine basmadan önce video oynatıcının yerinde gösterilecek **kapak fotoğrafını** belirler.
+
+> **Kullanım Yeri:** Videonun ilk karesi ilgi çekici değilse veya video yüklenene kadar
+ boş bir siyah ekran görünmesini engellemek için kullanılır.
+
+```html
+<h3>Örnek 3: Kapak Fotoğraflı Video</h3>
+<video 
+    width="640" 
+    height="360"
+    controls 
+    poster="harika-bir-kapak-resmi.jpg"
+>
+    <source src="video_dosyasi.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+```
+
+-----
+
+### 4\. `preload` Örneği
+
+`preload` (ön yükleme), tarayıcıya video dosyasını **ne zaman ve ne kadar** indirmesi gerektiği konusunda bir ipucu verir. Bu, sayfa yükleme hızını (performans) etkileyebilir.
+
+Üç ana değeri vardır:
+
+  * `preload="auto"`: Tarayıcı, sayfa yüklenirken videonun tamamını indirebilir (tarayıcıya bağlıdır).
+  * `preload="metadata"`: Tarayıcı sadece videonun temel bilgilerini (süre, boyut vb.) indirir, videonun kendisini indirmez.
+  * `preload="none"`: Tarayıcı, kullanıcı "oynat" düğmesine basana kadar videoyu hiç indirmez.
+
+> **Kullanım Yeri:** Eğer video sayfada önemli bir yerde değilse ve kullanıcının verisini korumak istiyorsanız `preload="none"` 
+kullanmak en iyi pratiktir.
+
+```html
+<h3>Örnek 4: Ön Yükleme Yapmayan Video</h3>
+
+<video 
+    width="640" 
+    height="360"
+    controls 
+    poster="kapak_resmi.jpg"
+    preload="none" 
+>
+    <source src="video_dosyasi.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+```
+
+**Not:** `preload="none"` kullandığınızda, bir `poster` resmi eklemeniz şiddetle tavsiye edilir, yoksa kullanıcı sadece boş bir alan görür.
+
+-----
+
+Bu örneklere baktığımızda, sence bir "GIF" gibi davranan (kısa, sessiz, sürekli tekrar eden ve kontrol düğmeleri olmayan) bir video yapmak için bu özelliklerden **hangilerini** bir arada kullanmamız gerekirdi?
+
+
+
+
+
+
+
+
+-->
+</html>
+
+

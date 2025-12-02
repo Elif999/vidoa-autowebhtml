@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+1.autoplay ve muted Örneği
+autoplay videonun sayfa açılır açılmaz otomatik başlamasını sağlar.
+Ancak, modern tarayıcılar (Chrome, Safari vb.) kullanıcıyı rahatsız etmemek için sesi olan videoların otomatik başlamasını engeller. 
+Bu yasağı aşmak ve autoplay özelliğinin çalıştığından emin olmak için, videoyu muted (sessiz) özelliği ile birlikte kullanmanız gerekir.
+Kullanım Yeri: Genellikle web sitelerinin arka planında (hero banner) oynayan videolar için kullanılır.
+    ÖRNEK:
+    -->
+<h3>Örnek 1: Otomatik Başlayan ve Sessiz Video</h3>
+<video 
+    width="640" 
+    height="360"
+    autoplay
+    muted
+    loop 
+    >
+    <source src="videoplayback (1).mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+
+
+<!--
+2.loop Örneği
+loop özelliği, videonun sonuna gelindiğinde otomatik olarak başa sarmasını ve tekrar oynatılmasını sağlar. 
+Video sonsuz bir döngüye girer.
+Kullanım Yeri: GIF gibi davranmasını istediğiniz kısa animasyonlar veya yukarıdaki arka plan videoları için idealdir.
+ÖRNEK:
+-->
+<h3>Örnek 2: Sürekli Tekrar Eden Video</h3>
+<video 
+    width="640" 
+    height="360"
+    controls 
+    loop 
+>
+    <source src="videoplayback (1).mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+
+
+<!--
+3.poster özelliği:
+poster Örneği
+Bu özelliği zaten senin kodunda kullanmıştın! poster, video yüklenirken veya kullanıcı "oynat" düğmesine basmadan önce
+video oynatıcının yerinde gösterilecek kapak fotoğrafını belirler.
+Kullanım Yeri: Videonun ilk karesi ilgi çekici değilse veya 
+video yüklenene kadar boş bir siyah ekran görünmesini engellemek için kullanılır.
+ÖRNEK:
+-->
+<h3>Örnek 3: Kapak Fotoğraflı Video</h3>
+
+<video 
+    width="640" 
+    height="360"
+    controls 
+    poster="cyborg-hand-on-dark-background-touching-screen-with-finger-photo.jpg"
+>
+    <source src="videoplayback (1).mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+
+ 
+<!--
+4.Preload özelliği:
+preload Örneği
+preload (ön yükleme), tarayıcıya video dosyasını ne zaman ve ne kadar 
+indirmesi gerektiği konusunda bir ipucu verir.
+Bu, sayfa yükleme hızını (performans) etkileyebilir.
+
+Üç ana değeri vardır:
+*preload="auto": Tarayıcı, sayfa yüklenirken videonun tamamını indirebilir (tarayıcıya bağlıdır).
+
+*preload="metadata": Tarayıcı sadece videonun temel bilgilerini (süre, boyut vb.) indirir, videonun kendisini indirmez.
+
+*preload="none": Tarayıcı, kullanıcı "oynat" düğmesine basana kadar videoyu hiç indirmez.
+Kullanım Yeri: Eğer video sayfada önemli bir yerde değilse 
+ve kullanıcının verisini korumak istiyorsanız preload="none" kullanmak en iyi pratiktir.
+
+
+ÖRNEK:
+-->
+<h3>Örnek 4: Ön Yükleme Yapmayan Video  - preload="none" Örneği</h3>
+
+<video 
+    width="640" 
+    height="360"
+    controls 
+    poster="cyborg-hand-on-dark-background-touching-screen-with-finger-photo.jpg"
+    preload="none" 
+>
+    <source src="videoplayback (1).mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+
+<h3>preload="auto" Örneği</h3>
+<video controls preload="auto">
+    <source src="videoplayback (1).mp4" type="video/mp4">
+</video>
+
+<h3>preload="metadata" Örneği</h3>
+<video controls preload="metadata">
+    <source src="videoplayback (1).mp4" type="video/mp4">
+</video>
+
+</body>
+</html>

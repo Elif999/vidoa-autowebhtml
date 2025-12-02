@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .content-section {
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        h2 {
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+        }
+        .link-container {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!--
+    sınavornek
+sınavda bir yazılım linkine tıklayınca yazılımla ilgili metin gözükücek 
+sınavda bir donanımla ilgili linke tıklayınca donanımla ilgili bir mtin paragarma gözükücek
+a linki kullanarak name href mantıkları
+    
+    
+    -->
+
+
+<h1>Sınav Örneği</h1>
+
+    <div class="link-container">
+        <p>İlgili bölüme gitmek için aşağıdaki bağlantılara tıklayın:</p>
+        <a href="#yazilim-bolumu">**Yazılım** Hakkında Bilgi</a> |
+        <a href="#donanim-bolumu">**Donanım** Hakkında Bilgi</a>
+    </div>
+
+    <hr>
+
+    <div id="yazilim-bolumu" class="content-section">
+        <h2>💻 Yazılım Bilgisi</h2>
+        <p>Yazılım, bilgisayar sistemlerinin ve donanımlarının çalışmasını sağlayan  programların**, prosedürlerin ve ilgili dokümantasyonun bütünüdür. Bir yazılım, donanımın ne yapacağını anlatan bir talimatlar dizisidir.</p>
+        <ul>
+            <li>**Sistem Yazılımları:** İşletim sistemleri (Windows, macOS, Linux).</li>
+            <li>**Uygulama Yazılımları:** Word işlemciler, tarayıcılar, oyunlar, mobil uygulamalar.</li>
+        </ul>
+        <a href="#">Sayfa Başına Dön</a>
+    </div>
+
+    <div id="donanim-bolumu" class="content-section">
+        <h2>⚙️ Donanım Bilgisi</h2>
+        <p>Donanım, bilgisayar sistemini oluşturan **fiziksel** ve somut bileşenlerin tamamıdır. Elle tutulabilir, gözle görülebilir parçalardır.</p>
+        <ul>
+            <li>**İç Donanımlar:** İşlemci (CPU), Bellek (RAM), Anakart, Sabit Disk (SSD/HDD).</li>
+            <li>**Dış Donanımlar:** Klavye, Fare, Monitör, Yazıcı, Hoparlör.</li>
+        </ul>
+        <a href="#">Sayfa Başına Dön</a>
+    </div>
+
+</body>
+
+</html>
